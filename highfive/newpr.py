@@ -350,8 +350,7 @@ class index:
 
     def POST(self):
         post = web.data()
-        payload_raw = post.getfirst("payload", '')
-        payload = json.loads(payload_raw)
+        payload = json.loads(post)
         if payload["action"] == "opened":
             new_pr(payload, user, token)
         elif payload["action"] == "created":
