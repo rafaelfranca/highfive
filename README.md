@@ -10,24 +10,14 @@ To install `highfive` you just need to execute the `setup.py` script or use
 `pip` directly. Both commands have to be executed from the directory where the
 `setup.py` script is located.
 
+    $ pip install -r requirements.txt
     $ python setup.py install
 
 or
 
+    $ pip install -r requirements.txt
     $ pip install . # the dot is important ;)
 
-
-Testing
-=======
-
-To run tests, make sure the test-requirements are installed by running:
-
-    $ pip install -r test-requirements.txt
-
-
-Once the dependencies are installed, you can run tests by executing:
-
-    $ nosetests
 
 Adding a Project
 ================
@@ -69,3 +59,10 @@ The bot posts a warning on any PR that targets an unexpected branch.
 
 [railscontrib]: http://edgeguides.rubyonrails.org/contributing_to_ruby_on_rails.html
 
+Deploying
+=========
+
+rails-highfive can be deployed on Heroku. You only need to set two required environment variables.
+
+* **GITHUB_USER**: the bots GitHub user
+* **GITHUB_TOKE**: the bots GitHub token
