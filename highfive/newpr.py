@@ -356,7 +356,7 @@ class index:
     def POST(self):
         post = web.data()
 
-        digest = hmac.new(os.environ.get('HOOK_SECRET'), post, hashlib.sha1).hexdigest
+        digest = hmac.new(os.environ.get('HOOK_SECRET'), post, hashlib.sha1).hexdigest()
         request_signature = web.ctx.env.get('HTTP_X_HUB_SIGNATURE').split('=')[1]
 
         if hmac.compare_digest(digest, request_signature):
