@@ -32,8 +32,8 @@ Once the dependencies are installed, you can run tests by executing:
 Adding a Project
 ================
 
-To make rust-highfive interact with a new repo, add a configuration file in
-`highfive/configs`, with a filename of the form `reponame.json`. 
+To make rails-highfive interact with a new repo, add a configuration file in
+`highfive/configs`, with a filename of the form `reponame.json`.
 
 It should look like:
 
@@ -48,7 +48,7 @@ It should look like:
     },
     "contributing": "http://project.tld/contributing_guide.html",
     "expected_branch": "develop"
-}   
+}
 ```
 
 The `groups` section allows you to alias lists of usernames. You should
@@ -60,12 +60,12 @@ blank.
 
 `contributing` specifies the contribution guide link in the message which
 welcomes new contributors to the repository. If `contributing` is not
-present, the [Rust contributing.md][rustcontrib] will be linked instead. 
+present, the [Rails contributing guide][railscontrib] will be linked instead.
 
 If PRs should be filed against a branch other than `master`, specify the
 correct destination in the `expected_branch` field. If `expected_branch` is
-left out, highfive will assume that PRs should be filed against `master`. 
+left out, highfive will assume that PRs should be filed against `master`.
 The bot posts a warning on any PR that targets an unexpected branch.
 
-[rustcontrib]: https://github.com/rust-lang/rust/blob/master/CONTRIBUTING.md 
+[railscontrib]: http://edgeguides.rubyonrails.org/contributing_to_ruby_on_rails.html
 
