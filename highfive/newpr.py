@@ -94,6 +94,7 @@ def post_comment(body, owner, repo, issue, user, token):
 def set_assignee(assignee, owner, repo, issue, user, token, author):
     global issue_url
     try:
+        print "Assigning %s to %s" % (issue, assignee)
         result = api_req("PATCH", issue_url % (owner, repo, issue), {"assignee": assignee}, user, token)['body']
     except urllib2.HTTPError, e:
         if e.code == 201:
@@ -159,6 +160,7 @@ def is_new_contributor(username, owner, repo, user, token, config):
 
 # If the user specified a reviewer, return the username, otherwise returns None.
 def find_reviewer(commit_msg):
+    print "Finding reviewer in: %s" % commit_msg
     match = reviewer_re.search(commit_msg)
     if not match:
         return None
@@ -323,6 +325,7 @@ def new_comment(payload, user, token):
     if not (author == commenter or (payload['issue']['assignee'] and commenter == payload['issue']['assignee']['login'])):
         # Get collaborators for this repo and check if the commenter is one of them
         if commenter not in get_collaborators(owner, repo, user, token):
+            print "%s is not a repository collaborator" % commenter
             return
 
     # Check for r? and set the assignee.
@@ -351,10 +354,13 @@ class index:
     def POST(self):
         post = web.data()
         payload = json.loads(post)
-        if payload["action"] == "opened":
-            new_pr(payload, user, token)
-        elif payload["action"] == "created":
-            new_comment(payload, user, token)
+        if "action" in payload:
+            if payload["action"] == "opened":
+                print "New Pull request"
+                new_pr(payload, user, token)
+            elif payload["action"] == "created":
+                print "New Commnent"
+                new_comment(payload, user, token)
 
 if __name__ == "__main__":
     app = web.application(urls, globals())
