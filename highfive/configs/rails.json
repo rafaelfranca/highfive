@@ -1,6 +1,6 @@
 {
     "groups": {
-        "all": ["core", "commiters"]
+        "all": ["core_triage", "commiters"]
     },
     "contributing": "http://edgeguides.rubyonrails.org/contributing_to_ruby_on_rails.html"
 }
