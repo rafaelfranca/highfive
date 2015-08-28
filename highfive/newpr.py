@@ -17,7 +17,7 @@ import os
 # contributor will happen early,
 contributors_url = "https://api.github.com/repos/%s/%s/contributors?per_page=100"
 post_comment_url = "https://api.github.com/repos/%s/%s/issues/%s/comments"
-collabo_url = "https://api.github.com/repos/%s/%s/collaborators"
+collabo_url = "https://api.github.com/repos/%s/%s/collaborators?per_page=100"
 issue_url = "https://api.github.com/repos/%s/%s/issues/%s"
 
 welcome_with_reviewer = '@%s (or someone else)'
