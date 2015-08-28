@@ -23,8 +23,8 @@ collabo_url = "https://api.github.com/repos/%s/%s/collaborators"
 issue_url = "https://api.github.com/repos/%s/%s/issues/%s"
 
 welcome_with_reviewer = '@%s (or someone else)'
-welcome_without_reviewer = "@nrc or @huonw (NB. this repo may be misconfigured)"
-raw_welcome = """Thanks for the pull request, and welcome! The Rust team is excited to review your changes, and you should hear from %s soon.
+welcome_without_reviewer = "@rafaelfranca (NB. this repo may be misconfigured)"
+raw_welcome = """Thanks for the pull request, and welcome! The Rails team is excited to review your changes, and you should hear from %s soon.
 
 If any changes to this PR are deemed necessary, please add them as extra commits. This ensures that the reviewer can see what has changed since they last reviewed the code. Due to the way GitHub handles out-of-date commits, this should also make it reasonably obvious what issues have or haven't been addressed. Large or tricky changes may require several passes of review and changes.
 
@@ -37,10 +37,10 @@ def welcome_msg(reviewer, config):
         text = welcome_without_reviewer
     else:
         text = welcome_with_reviewer % reviewer
-    # Default to the Rust contribution guide if "contributing" wasn't set
+    # Default to the Rails contribution guide if "contributing" wasn't set
     link = config.get('contributing')
     if not link:
-        link = "https://github.com/rust-lang/rust/blob/master/CONTRIBUTING.md"
+        link = "http://edgeguides.rubyonrails.org/contributing_to_ruby_on_rails.html"
     return raw_welcome % (text, link)
 
 warning_summary = '<img src="http://www.joshmatthews.net/warning.svg" alt="warning" height=20> **Warning** <img src="http://www.joshmatthews.net/warning.svg" alt="warning" height=20>\n\n%s'
@@ -48,8 +48,7 @@ unsafe_warning_msg = 'These commits modify **unsafe code**. Please review it car
 submodule_warning_msg = 'These commits modify **submodules**.'
 surprise_branch_warning = "Pull requests are usually filed against the %s branch for this repo, but this one is against %s. Please double check that you specified the right target!"
 
-
-review_with_reviewer = 'r? @%s\n\n(rust_highfive has picked a reviewer for you, use r? to override)'
+review_with_reviewer = 'r? @%s\n\n(rails_highfive has picked a reviewer for you, use r? to override)'
 review_without_reviewer = '@%s: no appropriate reviewer found, use r? to override'
 
 def review_msg(reviewer, submitter):
@@ -173,7 +172,7 @@ def find_reviewer(commit_msg):
 
 # Choose a reviewer for the PR
 def choose_reviewer(repo, owner, diff, exclude, config):
-    if not (owner == 'rust-lang' or (owner == 'nrc' and repo == 'highfive')):
+    if not (owner == 'rails'):
         return 'test_user_selection_ignore_this'
 
     # Get JSON data on reviewers.
