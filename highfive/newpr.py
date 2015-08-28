@@ -364,9 +364,11 @@ class index:
             if "action" in payload:
                 if payload["action"] == "opened":
                     print "New Pull request"
+                    print json.dumps(payload, sort_keys=True, indent=4)
                     new_pr(payload, user, token)
                 elif payload["action"] == "created":
                     print "New Commnent"
+                    print json.dumps(payload, sort_keys=True, indent=4)
                     new_comment(payload, user, token)
         else:
             print 'Unautorized request'
