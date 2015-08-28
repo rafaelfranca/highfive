@@ -7,7 +7,6 @@ import cgitb
 import json
 import random
 import sys
-import ConfigParser
 from StringIO import StringIO
 import gzip
 import re
@@ -341,10 +340,12 @@ if __name__ == "__main__":
 
     cgitb.enable()
 
-    config = ConfigParser.RawConfigParser()
-    config.read('./config')
-    user = config.get('github', 'user')
-    token = config.get('github', 'token')
+    user = os.environ.get('GITHUB_USER')
+    token = os.environ.get('GITHUB_TOKEN')
+
+    if !user || !token
+        print 'User is not configured'
+        exit(1)
 
     post = cgi.FieldStorage()
     payload_raw = post.getfirst("payload",'')
