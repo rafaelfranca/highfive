@@ -15,8 +15,6 @@ import time
 import socket
 import os
 
-from highfive import irc
-
 # Maximum per page is 100. Sorted by number of commits, so most of the time the
 # contributor will happen early,
 contributors_url = "https://api.github.com/repos/%s/%s/contributors?per_page=100"
@@ -65,9 +63,6 @@ reviewer_re = re.compile("\\b[rR]\?[:\- ]*@([a-zA-Z0-9\-]+)")
 unsafe_re = re.compile("\\bunsafe\\b|#!?\\[unsafe_")
 submodule_re = re.compile(".*\+Subproject\scommit\s.*", re.DOTALL|re.MULTILINE)
 
-rustaceans_api_url = "http://www.ncameron.org/rustaceans/user?username={username}"
-
-
 def _load_json_file(name):
     configs_dir = os.path.join(os.path.dirname(__file__), 'configs')
 
@@ -112,14 +107,6 @@ def set_assignee(assignee, owner, repo, issue, user, token, author):
             pass
         else:
             raise e
-
-    if assignee:
-        irc_name_of_reviewer = get_irc_nick(assignee)
-        if irc_name_of_reviewer:
-            client = irc.IrcClient(target="#rust-bots")
-            client.send_then_quit("{}: ping to review issue https://www.github.com/{}/{}/pull/{} by {}."
-                .format(irc_name_of_reviewer, owner, repo, issue, author))
-
 
 def get_collaborators(owner, repo, user, token):
     try:
@@ -307,18 +294,6 @@ def unexpected_branch(payload, config):
     if expected_target != actual_target:
         return (expected_target, actual_target)
     return False
-
-def get_irc_nick(gh_name):
-    """ returns None if the request status code is not 200,
-     if the user does not exist on the rustacean database,
-     or if the user has no `irc` field associated with their username
-    """
-    data = urllib2.urlopen(rustaceans_api_url.format(username=gh_name))
-    if data.getcode() == 200:
-        rustacean_data = json.loads(data.read())
-        if rustacean_data:
-            return rustacean_data[0].get("irc")
-    return None
 
 def new_pr(payload, user, token):
     owner = payload['pull_request']['base']['repo']['owner']['login']
