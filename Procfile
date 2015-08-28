@@ -1,1 +1,1 @@
-web: python highfive/newpr.py
+web: python highfive/newpr.py $PORT
