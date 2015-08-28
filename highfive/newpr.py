@@ -345,6 +345,9 @@ urls = (
 )
 
 class index:
+    def GET(self):
+        return 'PONG'
+
     def POST(self):
         post = web.data()
         payload_raw = post.getfirst("payload", '')
