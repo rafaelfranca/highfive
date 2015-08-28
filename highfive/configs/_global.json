@@ -1,7 +1,7 @@
 {
     "groups": {
-        "core": ["@brson", "@pcwalton", "@nikomatsakis", "@alexcrichton", "@huonw"],
-        "crates": ["@huonw", "@alexcrichton"],
-        "doc": ["@steveklabnik"]
+        "core": ["@carlosantoniodasilva", "@chancancode", "@dhh", "@fxn", "@guilleiguaran", "@jeremy", "@josevalim", "NZKoz", "@pixeltrix", "@rafaelfranca", "@senny", "@spastorino", "@tenderlove"],
+        "commiters": ["@arthurnn", "@eileencodes", "@kaspth", "@matthewwd", "@schneems", "@sgrif"],
+        "assets": ["@arthurnn", "@rafaelfranca", "@schneems"]
     }
 }

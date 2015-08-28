@@ -1,0 +1,6 @@
+{
+    "groups": {
+        "all": ["core", "commiters"],
+    },
+    "contributing": "http://edgeguides.rubyonrails.org/contributing_to_ruby_on_rails.html"
+}

@@ -5,8 +5,8 @@ from distutils.core import setup
 setup(name='highfive',
       version='0.1',
       description='GitHub hooks to provide an encouraging atmosphere for new contributors',
-      author='Rust Community',
-      author_email='no-idea@no-server.no-suffix',
-      url='https://github.com/nick29581/highfive',
+      author='Rails Community',
+      author_email='rafaelmfranca@gmail.com ',
+      url='https://github.com/rafaelfranca/highfive',
       packages=['highfive'],
 )

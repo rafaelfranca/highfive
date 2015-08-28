@@ -1,8 +1,0 @@
-{
-    "groups": {
-        "all": ["@alexcrichton", "@huonw", "@wycats"]
-    },
-    "dirs": {
-        "doc": ["doc"]
-    }
-}
