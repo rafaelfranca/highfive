@@ -44,8 +44,6 @@ def welcome_msg(reviewer, config):
     return raw_welcome % (text, link)
 
 warning_summary = '<img src="http://www.joshmatthews.net/warning.svg" alt="warning" height=20> **Warning** <img src="http://www.joshmatthews.net/warning.svg" alt="warning" height=20>\n\n%s'
-unsafe_warning_msg = 'These commits modify **unsafe code**. Please review it carefully!'
-submodule_warning_msg = 'These commits modify **submodules**.'
 surprise_branch_warning = "Pull requests are usually filed against the %s branch for this repo, but this one is against %s. Please double check that you specified the right target!"
 
 review_with_reviewer = 'r? @%s\n\n(rails_highfive has picked a reviewer for you, use r? to override)'
@@ -59,8 +57,6 @@ def review_msg(reviewer, submitter):
     return text
 
 reviewer_re = re.compile("\\b[rR]\?[:\- ]*@([a-zA-Z0-9\-]+)")
-unsafe_re = re.compile("\\bunsafe\\b|#!?\\[unsafe_")
-submodule_re = re.compile(".*\+Subproject\scommit\s.*", re.DOTALL|re.MULTILINE)
 
 def _load_json_file(name):
     configs_dir = os.path.join(os.path.dirname(__file__), 'configs')
@@ -257,34 +253,15 @@ def choose_reviewer(repo, owner, diff, exclude, config):
         # no eligible reviewer found
         return None
 
-#def modifies_unsafe(diff):
-#    in_rust_code = False
-#    for line in diff.split('\n'):
-#        if line.startswith("diff --git "):
-#            in_rust_code = line[-3:] == ".rs" and line.find(" b/src/test/") == -1
-#            continue
-#        if not in_rust_code:
-#            continue
-#        if (not line.startswith('+') or line.startswith('+++')) and not line.startswith("@@ "):
-#            continue
-#        if unsafe_re.search(line):
-#            return True
-#    return False
-
-def modifies_submodule(diff):
-    if submodule_re.match(diff):
-        return True
-    return False
-
 def unexpected_branch(payload, config):
-    """ returns (expected_branch, actual_branch) if they differ, else None 
+    """ returns (expected_branch, actual_branch) if they differ, else None
     """
 
-    # If unspecified, assume master. 
+    # If unspecified, assume master.
     expected_target = None
     if "expected_branch" in config:
         expected_target = config["expected_branch"]
-    if not expected_target: 
+    if not expected_target:
         expected_target = "master"
 
     # ie we want "stable" in this: "base": { "label": "rust-lang:stable"...
@@ -305,7 +282,7 @@ def new_pr(payload, user, token):
     msg = payload["pull_request"]['body']
     reviewer = find_reviewer(msg)
     post_msg = False
-    
+
     config = _load_json_file(repo + '.json')
 
     if not reviewer:
@@ -322,16 +299,9 @@ def new_pr(payload, user, token):
 
     warnings = []
 
-    # Lets not check for unsafe code for now, it doesn't seem to be very useful and gets a lot of false positives.
-    #if modifies_unsafe(diff):
-    #    warnings += [unsafe_warning_msg]
-
     surprise = unexpected_branch(payload, config)
     if surprise:
         warnings.append(surprise_branch_warning % surprise)
-
-    if modifies_submodule(diff):
-        warnings.append(submodule_warning_msgs)
 
     if warnings:
         post_comment(warning_summary % '\n'.join(map(lambda x: '* ' + x, warnings)), owner, repo, issue, user, token)
