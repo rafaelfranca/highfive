@@ -2,8 +2,7 @@
 
 import base64
 import urllib, urllib2
-import cgi
-import cgitb
+import web
 import json
 import random
 import sys
@@ -333,27 +332,29 @@ def new_comment(payload, user, token):
         issue = str(payload['issue']['number'])
         set_assignee(reviewer, owner, repo, issue, user, token, author)
 
+user = os.environ.get('GITHUB_USER')
+token = os.environ.get('GITHUB_TOKEN')
+
+if not user or not token:
+    print 'User is not configured'
+    exit(1)
+
+
+urls = (
+    '/', 'index'
+)
+
+class index:
+    def POST(self):
+        post = web.data()
+        payload_raw = post.getfirst("payload", '')
+        payload = json.loads(payload_raw)
+        if payload["action"] == "opened":
+            new_pr(payload, user, token)
+        elif payload["action"] == "created":
+            new_comment(payload, user, token)
 
 if __name__ == "__main__":
-    print "Content-Type: text/html;charset=utf-8"
-    print
+    app = web.application(urls, globals())
+    app.run()
 
-    cgitb.enable()
-
-    user = os.environ.get('GITHUB_USER')
-    token = os.environ.get('GITHUB_TOKEN')
-
-    if not user or not token:
-        print 'User is not configured'
-        exit(1)
-
-    post = cgi.FieldStorage()
-    payload_raw = post.getfirst("payload",'')
-    payload = json.loads(payload_raw)
-    if payload["action"] == "opened":
-        new_pr(payload, user, token)
-    elif payload["action"] == "created":
-        new_comment(payload, user, token)
-    else:
-        print payload["action"]
-        sys.exit(0)
