@@ -12,6 +12,8 @@ import re
 import time
 import socket
 import os
+import hmac
+import hashlib
 
 # Maximum per page is 100. Sorted by number of commits, so most of the time the
 # contributor will happen early,
@@ -353,14 +355,18 @@ class index:
 
     def POST(self):
         post = web.data()
-        payload = json.loads(post)
-        if "action" in payload:
-            if payload["action"] == "opened":
-                print "New Pull request"
-                new_pr(payload, user, token)
-            elif payload["action"] == "created":
-                print "New Commnent"
-                new_comment(payload, user, token)
+
+        digest = hmac.new(os.environ.get('HOOK_SECRET'), post, hashlib.sha1).hexdigest
+
+        if hmac.compare_digest(digest, web.ctx.env.get('HTTP_X_HUB_SIGNATURE').split('=')[1]):
+            payload = json.loads(post)
+            if "action" in payload:
+                if payload["action"] == "opened":
+                    print "New Pull request"
+                    new_pr(payload, user, token)
+                elif payload["action"] == "created":
+                    print "New Commnent"
+                    new_comment(payload, user, token)
 
 if __name__ == "__main__":
     app = web.application(urls, globals())
