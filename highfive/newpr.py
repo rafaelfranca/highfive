@@ -343,7 +343,7 @@ if __name__ == "__main__":
     user = os.environ.get('GITHUB_USER')
     token = os.environ.get('GITHUB_TOKEN')
 
-    if !user || !token
+    if (not user) || (not token)
         print 'User is not configured'
         exit(1)
 
