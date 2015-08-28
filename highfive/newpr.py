@@ -367,6 +367,8 @@ class index:
                 elif payload["action"] == "created":
                     print "New Commnent"
                     new_comment(payload, user, token)
+        else:
+            print 'Unautorized request'
 
 if __name__ == "__main__":
     app = web.application(urls, globals())
