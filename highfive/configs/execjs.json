@@ -1,5 +1,6 @@
 {
     "groups": {
         "all": ["assets"]
-    }
+    },
+    "contributing": "https://github.com/rails/execjs/blob/master/CONTRIBUTING.md"
 }
