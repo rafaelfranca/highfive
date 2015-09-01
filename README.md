@@ -65,4 +65,4 @@ Deploying
 rails-highfive can be deployed on Heroku. You only need to set two required environment variables.
 
 * **GITHUB_USER**: the bots GitHub user
-* **GITHUB_TOKE**: the bots GitHub token
+* **GITHUB_TOKEN**: the bots GitHub token
