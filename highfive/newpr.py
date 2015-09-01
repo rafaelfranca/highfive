@@ -46,7 +46,7 @@ def welcome_msg(reviewer, config):
 warning_summary = '<img src="http://www.joshmatthews.net/warning.svg" alt="warning" height=20> **Warning** <img src="http://www.joshmatthews.net/warning.svg" alt="warning" height=20>\n\n%s'
 surprise_branch_warning = "Pull requests are usually filed against the %s branch for this repo, but this one is against %s. Please double check that you specified the right target!"
 
-review_with_reviewer = 'r? @%s\n\n(rails_highfive has picked a reviewer for you, use r? to override)'
+review_with_reviewer = 'r? @%s\n\n(@rails-bot has picked a reviewer for you, use r? to override)'
 review_without_reviewer = '@%s: no appropriate reviewer found, use r? to override'
 
 def review_msg(reviewer, submitter):
