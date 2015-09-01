@@ -1,7 +1,7 @@
 {
     "groups": {
         "core": ["@carlosantoniodasilva", "@chancancode", "@dhh", "@fxn", "@guilleiguaran", "@jeremy", "@josevalim", "NZKoz", "@pixeltrix", "@rafaelfranca", "@senny", "@spastorino", "@tenderlove"],
-        "core_triage": ["@carlosantoniodasilva", "@chancancode", "@rafaelfranca", "@senny"],
+        "core_triage": ["@carlosantoniodasilva", "@chancancode", "@pixeltrix", "@rafaelfranca", "@senny"],
         "commiters": ["@arthurnn", "@eileencodes", "@kaspth", "@matthewwd", "@schneems", "@sgrif"],
         "assets": ["@arthurnn", "@rafaelfranca", "@schneems"]
     }
