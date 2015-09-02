@@ -311,7 +311,7 @@ def new_pr(payload, user, token):
 
 def new_comment(payload, user, token):
     # Check the issue is a PR and is open.
-    if 'issue' is not in payload or payload['issue']['state'] != 'open' or 'pull_request' not in payload['issue']:
+    if 'issue' not in payload or payload['issue']['state'] != 'open' or 'pull_request' not in payload['issue']:
         return
 
     commenter = payload['comment']['user']['login']
