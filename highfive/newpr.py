@@ -287,12 +287,13 @@ def new_pr(payload, user, token):
 
     config = _load_json_file(repo + '.json')
 
-    if not reviewer:
+    if not reviewer and author not in get_collaborators(owner, repo, user, token):
         post_msg = True
         diff = api_req("GET", payload["pull_request"]["diff_url"])['body']
         reviewer = choose_reviewer(repo, owner, diff, author, config)
 
-    set_assignee(reviewer, owner, repo, issue, user, token, author)
+    if reviewer:
+        set_assignee(reviewer, owner, repo, issue, user, token, author)
 
     if is_new_contributor(author, owner, repo, user, token, config):
         post_comment(welcome_msg(reviewer, config), owner, repo, issue, user, token)
