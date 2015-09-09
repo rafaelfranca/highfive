@@ -1,5 +1,6 @@
 {
     "groups": {
         "all": ["@rafaelfranca", "@kaspth"]
-    }
+    },
+    "contributing": "https://github.com/rails/rails-dom-testing/blob/master/CONTRIBUTING.md"
 }

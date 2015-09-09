@@ -1,5 +1,6 @@
 {
     "groups": {
         "all": ["@tenderlove", "@rafaelfranca", "@sgrif"]
-    }
+    },
+    "contributing": "https://github.com/rails/arel/blob/master/CONTRIBUTING.md"
 }
