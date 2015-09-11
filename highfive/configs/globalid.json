@@ -1,5 +1,6 @@
 {
     "groups": {
         "all": ["@kaspth", "@jeremy"]
-    }
+    },
+    "contributing": "https://github.com/rails/globalid/blob/master/CONTRIBUTING.md"
 }

@@ -1,5 +1,6 @@
 {
     "groups": {
         "all": ["@rafaelfranca", "@lucasmazza"]
-    }
+    },
+    "contributing": "https://github.com/rails/jquery-rails/blob/master/CONTRIBUTING.md"
 }

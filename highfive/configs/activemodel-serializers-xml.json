@@ -1,0 +1,6 @@
+{
+    "groups": {
+        "all": ["@rafaelfranca"]
+    },
+    "contributing": "https://github.com/rails/activemodel-serializers-xml/blob/master/CONTRIBUTING.md"
+}

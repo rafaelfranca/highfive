@@ -1,0 +1,6 @@
+{
+    "groups": {
+        "all": ["@jeremy", "@rafaelfranca"]
+    },
+    "contributing": "https://github.com/rails/activeresource/blob/master/CONTRIBUTING.md"
+}
