@@ -1,0 +1,6 @@
+{
+    "groups": {
+        "all": ["@rafaelfranca", "@sikachu"]
+    },
+    "contributing": "https://github.com/rails/activerecord-session_store/blob/master/CONTRIBUTING.md"
+}
