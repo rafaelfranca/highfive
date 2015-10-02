@@ -5,7 +5,7 @@ class Webhook
     req = Rack::Request.new(env)
 
     if req.get_header('HTTP_X_GITHUB_EVENT') == 'pull_request'
-      [204, {}, [""]]
+      [201, {}, [""]]
     else
       [200, {}, ["OK"]]
     end

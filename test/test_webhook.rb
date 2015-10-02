@@ -9,7 +9,7 @@ class WebhookTest < Minitest::Test
 
   def test_open_a_new_pull_request
     post '/', fixture('new_pr_without_assignee.json'), 'HTTP_X_GITHUB_EVENT' => 'pull_request'
-    assert_equal 204, last_response.status
+    assert_equal 201, last_response.status
   end
 
   def fixture(name)
