@@ -352,7 +352,7 @@ def new_comment(payload, user, token):
         match = approve_re.search(msg)
         if match:
             diff = api_req("GET", payload["issue"]["pull_request"]["diff_url"])['body']
-            reviewer = choose_reviewer(repo, owner, diff, author, config)
+            reviewer = choose_reviewer(repo, owner, diff, payload['issue']['assignee']['login'], config)
             set_assignee(reviewer, owner, repo, issue, user, token, author)
             set_label('Approved', owner, repo, issue, user, token, author)
             post_comment(('r+ @%s. This pull request was approved by one of the reviewers and it is waiting your decision' % reviewer), owner, repo, issue, user, token)
