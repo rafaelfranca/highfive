@@ -57,6 +57,7 @@ def review_msg(reviewer, submitter):
     return text
 
 reviewer_re = re.compile("\\b[rR]\?[:\- ]*@([a-zA-Z0-9\-]+)")
+approve_re = re.compile("\\b[rR]\+[:\- ]*@rails-bot")
 
 def _load_json_file(name):
     configs_dir = os.path.join(os.path.dirname(__file__), 'configs')
@@ -98,6 +99,17 @@ def set_assignee(assignee, owner, repo, issue, user, token, author):
     try:
         print "Assigning %s to %s" % (issue, assignee)
         result = api_req("PATCH", issue_url % (owner, repo, issue), {"assignee": assignee}, user, token)['body']
+    except urllib2.HTTPError, e:
+        if e.code == 201:
+            pass
+        else:
+            raise e
+
+def set_label(label, owner, repo, issue, user, token, author):
+    global issue_url
+    try:
+        print "Adding label %s to %s" % (issue, label)
+        result = api_req("PATCH", issue_url % (owner, repo, issue), {"labels": [label]}, user, token)['body']
     except urllib2.HTTPError, e:
         if e.code == 201:
             pass
@@ -325,14 +337,28 @@ def new_comment(payload, user, token):
 
     # Check the commenter is the submitter of the PR or the previous assignee.
     author = payload["issue"]['user']['login']
-    if not (author == commenter or (payload['issue']['assignee'] and commenter == payload['issue']['assignee']['login'])):
+    is_assignee = (payload['issue']['assignee'] and commenter == payload['issue']['assignee']['login'])
+
+    if not (author == commenter or (is_assignee)):
         # Get collaborators for this repo and check if the commenter is one of them
         if commenter not in get_collaborators(owner, repo, user, token):
             print "%s is not a repository collaborator" % commenter
             return
 
-    # Check for r? and set the assignee.
     msg = payload["comment"]['body']
+
+    if is_assignee:
+        # Check for r+
+        match = approve_re.search(msg)
+        if match:
+            diff = api_req("GET", payload["issue"]["pull_request"]["diff_url"])['body']
+            reviewer = choose_reviewer(repo, owner, diff, author, config)
+            set_assignee(reviewer, owner, repo, issue, user, token, author)
+            set_label('Approved', owner, repo, issue, user, token, author)
+            post_comment(('r+ @%s. This pull request was approved by one of the reviewers and it is waiting your decision' % reviewer), owner, repo, issue, user, token)
+            return
+
+    # Check for r? and set the assignee.
     reviewer = find_reviewer(msg)
     if reviewer:
         issue = str(payload['issue']['number'])
