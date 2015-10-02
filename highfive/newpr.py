@@ -346,6 +346,7 @@ def new_comment(payload, user, token):
             return
 
     msg = payload["comment"]['body']
+    issue = str(payload['issue']['number'])
 
     if is_assignee:
         # Check for r+
@@ -362,7 +363,6 @@ def new_comment(payload, user, token):
     # Check for r? and set the assignee.
     reviewer = find_reviewer(msg)
     if reviewer:
-        issue = str(payload['issue']['number'])
         set_assignee(reviewer, owner, repo, issue, user, token, author)
 
 user = os.environ.get('GITHUB_USER')
