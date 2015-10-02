@@ -351,8 +351,8 @@ def new_comment(payload, user, token):
         # Check for r+
         match = approve_re.search(msg)
         if match:
-            print 'Test'
             diff = api_req("GET", payload["issue"]["pull_request"]["diff_url"])['body']
+            config = _load_json_file(repo + '.json')
             reviewer = choose_reviewer(repo, owner, diff, payload['issue']['assignee']['login'], config)
             set_assignee(reviewer, owner, repo, issue, user, token, author)
             set_label('Approved', owner, repo, issue, user, token, author)
