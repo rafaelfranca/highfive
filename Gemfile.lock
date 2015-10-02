@@ -1,0 +1,25 @@
+GIT
+  remote: git://github.com/rack/rack.git
+  revision: f69d43f9ac5652050f93ec927fe41bb1c9f616ff
+  specs:
+    rack (2.0.0.alpha)
+      json
+
+GEM
+  remote: https://rubygems.org/
+  specs:
+    json (1.8.3)
+    minitest (5.8.1)
+    rack-test (0.6.3)
+      rack (>= 1.0)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  minitest
+  rack!
+  rack-test
+
+BUNDLED WITH
+   1.10.6
