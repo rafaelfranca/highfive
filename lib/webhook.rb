@@ -2,6 +2,10 @@ require 'rack/request'
 require 'json'
 
 class Webhook
+  def initialize(bot)
+    @bot = bot
+  end
+
   def call(env)
     req = Rack::Request.new(env)
 
@@ -9,6 +13,8 @@ class Webhook
       payload = JSON.parse(req.get_header('rack.input').read)
 
       if payload['action'] == 'opened'
+        @bot.handle_pull_request!(payload)
+
         [201, {}, [""]]
       else
         default_response
