@@ -12,6 +12,16 @@ class WebhookTest < Minitest::Test
     assert_equal 201, last_response.status
   end
 
+  def test_any_action_in_a_pull_request
+    post '/', fixture('close_pr.json'), 'HTTP_X_GITHUB_EVENT' => 'pull_request'
+    assert_equal 200, last_response.status
+  end
+
+  def test_any_event
+    post '/', "", 'HTTP_X_GITHUB_EVENT' => 'fork'
+    assert_equal 200, last_response.status
+  end
+
   def fixture(name)
     File.read(File.expand_path('../fixtures/' + name, __FILE__))
   end
