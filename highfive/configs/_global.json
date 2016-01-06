@@ -3,6 +3,7 @@
         "core": ["@carlosantoniodasilva", "@chancancode", "@dhh", "@fxn", "@guilleiguaran", "@jeremy", "@matthewd", "NZKoz", "@pixeltrix", "@rafaelfranca", "@senny", "@spastorino", "@tenderlove"],
         "core_triage": ["@chancancode", "@matthewd", "@pixeltrix", "@rafaelfranca", "@senny"],
         "commiters": ["@arthurnn", "@eileencodes", "@kaspth", "@schneems", "@sgrif"],
+        "activerecord": ["@arthurnn", "@eileencodes", "@schneems", "@sgrif"]
         "assets": ["@arthurnn", "@rafaelfranca", "@schneems"]
     }
 }
