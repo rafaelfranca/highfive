@@ -2,5 +2,8 @@
     "groups": {
         "all": ["core_triage", "commiters"]
     },
+    "dirs": {
+      "activerecord": ["core_triage", "activerecord"]
+    },
     "contributing": "http://edgeguides.rubyonrails.org/contributing_to_ruby_on_rails.html"
 }
