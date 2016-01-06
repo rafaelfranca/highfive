@@ -10,7 +10,7 @@ class Webhook
     req = Rack::Request.new(env)
 
     if req.get_header('HTTP_X_GITHUB_EVENT') == 'pull_request'
-      payload = JSON.parse(req.get_header('rack.input').read)
+      payload = JSON.parse(req.body.read)
 
       if payload['action'] == 'opened'
         @bot.handle_pull_request!(payload)
