@@ -1,8 +1,8 @@
 {
     "groups": {
-        "core": ["@carlosantoniodasilva", "@chancancode", "@dhh", "@fxn", "@guilleiguaran", "@jeremy", "@josevalim", "NZKoz", "@pixeltrix", "@rafaelfranca", "@senny", "@spastorino", "@tenderlove"],
-        "core_triage": ["@chancancode", "@pixeltrix", "@rafaelfranca", "@senny"],
-        "commiters": ["@arthurnn", "@eileencodes", "@kaspth", "@matthewd", "@schneems", "@sgrif"],
+        "core": ["@carlosantoniodasilva", "@chancancode", "@dhh", "@fxn", "@guilleiguaran", "@jeremy", "@matthewd", "NZKoz", "@pixeltrix", "@rafaelfranca", "@senny", "@spastorino", "@tenderlove"],
+        "core_triage": ["@chancancode", "@matthewd", "@pixeltrix", "@rafaelfranca", "@senny"],
+        "commiters": ["@arthurnn", "@eileencodes", "@kaspth", "@schneems", "@sgrif"],
         "assets": ["@arthurnn", "@rafaelfranca", "@schneems"]
     }
 }
