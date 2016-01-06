@@ -14,8 +14,10 @@ class Bot
     number = payload['number']
     body = payload['pull_request']['body']
 
-    assignee = /\b[rR]\?[:\- ]*@([a-zA-Z0-9\-_]+)/.match(body)[1]
+    assignee = /\b[rR]\?[:\- ]*@(?<name>[a-zA-Z0-9\-_]+)/.match(body)
 
-    @client.update_issue(repository, number, assignee: assignee)
+    if assignee
+      @client.update_issue(repository, number, assignee: assignee[:name])
+    end
   end
 end
