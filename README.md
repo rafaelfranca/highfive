@@ -3,6 +3,8 @@ Highfive
 
 GitHub hooks to provide an encouraging atmosphere for new contributors
 
+See this bot in action: [@rails-bot](https://github.com/rails-bot?tab=activity)
+
 Install
 =======
 
