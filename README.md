@@ -64,7 +64,16 @@ The bot posts a warning on any PR that targets an unexpected branch.
 Deploying
 =========
 
-rails-highfive can be deployed on Heroku. You only need to set two required environment variables.
+rails-highfive can be deployed on Heroku. You'll need to set up the following required environment variables:
 
-* **GITHUB_USER**: the bots GitHub user
-* **GITHUB_TOKEN**: the bots GitHub token
+* **GITHUB_USER**: the bot's GitHub user
+* **GITHUB_TOKEN**: the bot's GitHub token
+* **HOOK_SECRET**: a secret string that is shared with the GitHub webhook setup
+
+To set up a webhook on GitHub for testing your bot, use the following settings on a repo or org:
+
+* **Content type**: `application/json`
+* **Secret**: the same string you used in the `HOOK_SECRET` env var for your bot
+* **Events**:
+  * Selet `Let me select individual events`
+  * Selet `Issues`, `Pull request review comment`, `Issue comment`, `Pull request`
