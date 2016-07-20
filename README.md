@@ -75,5 +75,5 @@ To set up a webhook on GitHub for testing your bot, use the following settings o
 * **Content type**: `application/json`
 * **Secret**: the same string you used in the `HOOK_SECRET` env var for your bot
 * **Events**:
-  * Selet `Let me select individual events`
-  * Selet `Issues`, `Pull request review comment`, `Issue comment`, `Pull request`
+  * Select `Let me select individual events`
+  * Select `Issues`, `Pull request review comment`, `Issue comment`, `Pull request`

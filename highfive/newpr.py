@@ -22,17 +22,23 @@ post_comment_url = "https://api.github.com/repos/%s/%s/issues/%s/comments"
 collabo_url = "https://api.github.com/repos/%s/%s/collaborators?per_page=100"
 issue_url = "https://api.github.com/repos/%s/%s/issues/%s"
 
-welcome_with_reviewer = '@%s (or someone else)'
-welcome_without_reviewer = "@rafaelfranca (NB. this repo may be misconfigured)"
 raw_welcome = """Thanks for the pull request, and welcome! The Rails team is excited to review your changes, and you should hear from %s soon.
 
 If any changes to this PR are deemed necessary, please add them as extra commits. This ensures that the reviewer can see what has changed since they last reviewed the code. Due to the way GitHub handles out-of-date commits, this should also make it reasonably obvious what issues have or haven't been addressed. Large or tricky changes may require several passes of review and changes.
 
-Please see [the contribution instructions](%s) for more information.
 """
 
+welcome_with_reviewer = '@%s (or someone else)'
+welcome_without_reviewer = "@mrb_bk (NB. this repo may be misconfigured)"
+
+contribution_with_codeclimate = """This repository is being automatically checked for code quality issues using <a href="https://codeclimate.com">Code Climate</a>. You can see results for this analysis in the PR status below. Newly introduced issues should be fixed before a Pull Request is considered ready to review.
+
+Please see [the contribution instructions](%s) for more information.
+"""
+contribution_without_codeclimate= "Please see [the contribution instructions](%s) for more information."
 
 def welcome_msg(reviewer, config):
+    welcome_message = raw_welcome
     if reviewer is None:
         text = welcome_without_reviewer
     else:
@@ -41,7 +47,13 @@ def welcome_msg(reviewer, config):
     link = config.get('contributing')
     if not link:
         link = "http://edgeguides.rubyonrails.org/contributing_to_ruby_on_rails.html"
-    return raw_welcome % (text, link)
+    # Check if "codeclimate" is set, append welcome message if so
+    codeclimate = config.get('codeclimate')
+    if codeclimate is True:
+        welcome_message += contribution_with_codeclimate
+    else:
+        welcome_message += contribution_without_codeclimate
+    return welcome_message % (text, link)
 
 warning_summary = '<img src="http://www.joshmatthews.net/warning.svg" alt="warning" height=20> **Warning** <img src="http://www.joshmatthews.net/warning.svg" alt="warning" height=20>\n\n%s'
 surprise_branch_warning = "Pull requests are usually filed against the %s branch for this repo, but this one is against %s. Please double check that you specified the right target!"
@@ -400,4 +412,3 @@ class index:
 if __name__ == "__main__":
     app = web.application(urls, globals())
     app.run()
-
