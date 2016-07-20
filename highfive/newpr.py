@@ -29,7 +29,7 @@ If any changes to this PR are deemed necessary, please add them as extra commits
 """
 
 welcome_with_reviewer = '@%s (or someone else)'
-welcome_without_reviewer = "@mrb_bk (NB. this repo may be misconfigured)"
+welcome_without_reviewer = "@rafaelfranca (NB. this repo may be misconfigured)"
 
 contribution_with_codeclimate = """This repository is being automatically checked for code quality issues using <a href="https://codeclimate.com">Code Climate</a>. You can see results for this analysis in the PR status below. Newly introduced issues should be fixed before a Pull Request is considered ready to review.
 
