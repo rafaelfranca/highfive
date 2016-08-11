@@ -1,0 +1,6 @@
+{
+    "groups": {
+        "all": ["@rafaelfranca"]
+    },
+    "contributing": "https://github.com/rails/rails-controller-testing/blob/master/CONTRIBUTING.md"
+}
