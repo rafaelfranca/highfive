@@ -3,7 +3,7 @@
         "core": ["@kaspth", "@carlosantoniodasilva", "@chancancode", "@dhh", "@fxn", "@guilleiguaran", "@jeremy", "@matthewd", "@pixeltrix", "@rafaelfranca", "@senny", "@spastorino", "@tenderlove"],
         "core_triage": ["@kaspth", "@matthewd", "@pixeltrix", "@rafaelfranca", "@senny"],
         "commiters": ["@eileencodes", "@schneems", "@sgrif"],
-        "activerecord": [""@eileencodes", "@schneems", "@sgrif", "@matthewd"],
+        "activerecord": ["@eileencodes", "@schneems", "@sgrif", "@matthewd"],
         "assets": ["@rafaelfranca", "@schneems"]
     }
 }
