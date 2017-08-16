@@ -2,7 +2,7 @@
     "groups": {
         "core": ["@kaspth", "@carlosantoniodasilva", "@dhh", "@fxn", "@guilleiguaran", "@jeremy", "@matthewd", "@pixeltrix", "@rafaelfranca", "@spastorino", "@tenderlove", "@eileencodes"],
         "core_triage": ["@kaspth", "@matthewd", "@pixeltrix", "@rafaelfranca", "@eileencodes"],
-        "commiters": ["@schneems", "@sgrif"],
+        "commiters": ["@schneems", "@sgrif", "@georgeclaghorn"],
         "activerecord": ["@eileencodes", "@schneems", "@matthewd", "@sgrif"],
         "assets": ["@rafaelfranca", "@schneems"]
     }
