@@ -1,9 +1,9 @@
 {
     "groups": {
         "core": ["@kaspth", "@carlosantoniodasilva", "@dhh", "@fxn", "@guilleiguaran", "@jeremy", "@matthewd", "@pixeltrix", "@rafaelfranca", "@spastorino", "@tenderlove", "@eileencodes"],
-        "core_triage": ["@kaspth", "@matthewd", "@pixeltrix", "@rafaelfranca", "@eileencodes"],
+        "core_triage": ["@kaspth", "@pixeltrix", "@rafaelfranca", "@eileencodes"],
         "commiters": ["@schneems", "@sgrif", "@georgeclaghorn", "@javan"],
-        "activerecord": ["@eileencodes", "@schneems", "@matthewd", "@sgrif"],
+        "activerecord": ["@eileencodes", "@schneems", "@sgrif"],
         "assets": ["@rafaelfranca", "@schneems"]
     }
 }
