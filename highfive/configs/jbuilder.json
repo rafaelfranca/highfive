@@ -1,6 +1,6 @@
 {
     "groups": {
-        "all": ["@rwz"]
+        "all": ["@pixeltrix"]
     },
     "contributing": "https://github.com/rails/jbuilder/blob/master/CONTRIBUTING.md"
 }
